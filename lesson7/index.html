@@ -22,11 +22,11 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="heroInput" class="form-label">Name:</label>
-                            <input type="text" class="form-control" id="heroInput" name="heroName" />
+                            <input type="text" class="form-control" id="heroInput" name="heroName" required />
                         </div>
                         <div class="col">
                             <label for="aliasInput" class="form-label">Alias:</label>
-                            <input type="text" class="form-control" id="aliasInput" name="aliasName" />
+                            <input type="text" class="form-control" id="aliasInput" name="aliasName" required/>
                         </div>
                     </div>
                     <div class="row">
@@ -58,7 +58,7 @@
                             <h3>Choose up to 3 powers</h3>
                             <div class="power-input mb-3">
                                 <label for="power" class="form-label">Power 1</label>
-                                <input type="text" class="form-control" id="power1" name="powers">
+                                <input type="text" class="form-control" id="power1" name="powers" required>
                             </div>
                             <div class="power-input mb-3">
                                 <label for="power" class="form-label">Power 2</label>
@@ -73,7 +73,7 @@
                             <h3>Choose up to 3 enemies</h3>
                             <div class="enemy-input mb-3">
                                 <label for="enemy" class="form-label">Enemy 1</label>
-                                <input type="text" class="form-control" id="enemy1" name="enemies">
+                                <input type="text" class="form-control" id="enemy1" name="enemies" required>
                             </div>
                             <div class="enemy-input mb-3">
                                 <label for="enemy" class="form-label">Enemy 2</label>
@@ -88,7 +88,7 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="imgInput" class="form-label">Upload an image</label>
-                            <input type="url" class="form-control" id="imgInput" name="imgUrl">
+                            <input type="url" class="form-control" id="imgInput" name="imgUrl" required>
                         </div>
                     </div>
                     <div class="col">
@@ -99,25 +99,30 @@
         </section>
         <section class="section" id="cardSection">
             <div class="container" id="container">
-                <div class="row" id="cardRow"></div>
-                <!-- <div class="card">
-                    <img src="" alt="" id="heroImg">
-                    <h2>Name:
-                        <span id="heroName"></span>
-                    </h2>
-                    <p>
-                        Alias: 
-                        <span id="aliasName"></span>
-                    </p>
-                    <p>Powers:</p>
-                    <ul id="powerList">
-                        li.list-item>powers
-                    </ul>
-                    <p>Ememies</p>
-                    <ul id="enemyList">
-                        li.list>enemies
-                    </ul>
-                </div> -->
+                <div class="row row-cols-1 row-cols-ms=3 row-cols-lg-4 g-4" id="cardRow">
+                    <!-- <div class="col">
+                        <div class="card">
+                            <img src="https://via.placeholder.com/50x50" alt="placeholder img" class="img-fluid image car-img-top" />
+                            <div class="card-body">
+                                <h3 class="hero-heading display-5 text-capitalize" id="display-3">hero</h3>
+                                <p class="alias-text text-capitalize">alias</p>
+                                <p class="is-hero-text text-capitalize">hero</p>
+                                <p class="text-capitalize">powers:</p>
+                                <ul id="powerList" class="list-group-flush">
+                                    <li class="power-item list-group-item">power1</li>
+                                    <li class="power-item list-group-item">power2</li>
+                                    <li class="power-item list-group-item">power3</li>
+                                </ul>
+                                <p class="text-capitalize">ememies:</p>
+                                <ul id="ememyList" class="list-group-flush">
+                                    <li class="enemy-item list-group-item">enemy1</li>
+                                    <li class="enemy-item list-group-item">enemy2</li>
+                                    <li class="enemy-item list-group-item">enemy3</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
             </div>
         </section>
     </main>

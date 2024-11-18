@@ -91,7 +91,27 @@ class Superhero {
         // this.powers = [],
         // this.enemies = [],
         // this.imgUrl
-        this.hero = {
+        
+
+        //build array of characters
+        this.characters = []
+
+        this.cardRow = document.getElementById('cardRow')
+    }
+    //end constructor
+
+    //init ot initializer
+    init() {
+        //console.log('initialized')
+        const characters = this.characters
+        //console.log(hero);
+        this.getData()
+        // this.buildCard()
+    }
+
+    //colect data from form
+    getData() {
+        const hero = {
             heroName: '',
             aliasName: '',
             isHero: 'hero' || 'villain',
@@ -101,20 +121,6 @@ class Superhero {
             imgUrl: ''
         }
 
-        //build array of characters
-    }
-    //end constructor
-
-    //init ot initializer
-    init() {
-        //console.log('initialized')
-        const hero = this.hero
-        //console.log(hero);
-        this.getData(hero)
-    }
-
-    //colect data from form
-    getData(obj) {
         //set inputs
         const heroInput = document.getElementById('heroInput')
         const aliasInput = document.getElementById('aliasInput')
@@ -124,70 +130,123 @@ class Superhero {
         const enemy1 = document.getElementById('enemy1').value || null
         const enemy2 = document.getElementById('enemy2').value || null
         const enemy3 = document.getElementById('enemy3').value || null
+        const imgInput = document.getElementById('imgInput').value || null
 
         //store values in obj
-        obj.heroName = heroInput.value
-        obj.aliasName = aliasInput.value
+        hero.heroName = heroInput.value
+        hero.aliasName = aliasInput.value
+        hero.imgUrl = imgInput
 
 
         //radio buttons
-        var isHeroTemp = document.getElementById('isHero').value;
-        obj.isHero = isHeroTemp;
 
-        var universeTemp = document.getElementById('universe').value;
-        obj.universe = universeTemp;
+        // var isHeroTemp = document.getElementById('isHero').value;
+        // obj.isHero = isHeroTemp;
 
-        //obj.isHero = document.querySelector('input[name=isHero]:checked').value;
-        //obj.universe = document.querySelector('input[name=universe]:checked').value;
+        // var universeTemp = document.getElementById('universe').value;
+        // obj.universe = universeTemp;
+
+        hero.isHero = document.querySelector('input[name=isHero]:checked').value || null
+        hero.universe = document.querySelector('input[name=universe]:checked').value || null
 
         
-        
+    
         // add items to array
-        obj.powers = [...obj.powers, power1, power2, power3]
-        obj.enemies  = [...obj.enemies, enemy1, enemy2, enemy3]
+        hero.powers = [...hero.powers, power1, power2, power3]
+        hero.enemies  = [...hero.enemies, enemy1, enemy2, enemy3]
         
-        console.log(obj);
+        //console.log(hero);
 
-    }
-    addPower(item) {
-        const powerList = document.getElementById('powerList')
-        const li = document.createElement('li')
-        const powers = this.powers
-        //take item and oush it into powers array
-        powers.push(item)
+        this.characters = [...this.characters, hero]
+        //console.log(this.characters);
 
-        li.innerText = item
-
-        powerList.appendChild(li)
+        this.buildCard(hero)
     }
 
-    addEmemy(item) {
-        const enemyList = document.getElementById('enemyList')
-        const li = document.createElement('li')
-        const enemies = this.enemies
-        //take item and oush it into powers array
-        enemies.push(item)
+    buildCard(obj) {
+        const cardRow = this.cardRow
 
-        li.innerText = item
+        const col = document.createElement('div')
+        col.classList.add('col')
 
-        enemyList.appendChild(li)
-    }
+        const card = document.createElement('div')
+        card.classList.add('card')
 
-    displayHero() {
-        const heroName = document.getElementById('heroName')
-        const aliasName = document.getElementById('aliasName')
-        const img = document.getElementById('heroImg')
+        const img = document.createElement('img')
+        img.src = obj.imgUrl
+        img.alt = obj.heroName 
+        img.classList.add('img-fluid', 'card-img-top', 'hero-img')
 
-        img.src = `images/${this.imgUrl}`
-        img.alt = `${this.hero}`
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
 
+        const h3 = document.createElement('h3')
+        h3.classList.add('display-5', 'text-captilize')
+        h3.innerText = obj.heroName
+
+        const aliasText = document.createElement('p')
+        aliasText.classList.add('alias-text', 'text-capitalize')
+        aliasText.innerText = obj.aliasName
+
+        const heroText = document.createElement('p')
+        heroText.classList.add('hero-text', 'text-capitalize')
+        heroText.innerText = obj.isHero
+
+        const universeText = document.createElement('p')
+        universeText.classList.add('universe-text', 'text-capitalize')
+        universeText.innerText = obj.universe
         
 
-        heroName.innerText = this.hero
-        aliasName.innerText = this.alias
+        //build lists
+        const powerList = document.createElement('ul')
+        powerList.setAttribute('id', 'powerList')
+        powerList.classList.add('power-list', 'list-group', 'list-group-flush')
+
+        obj.powers.forEach(power => {
+            const li = document.createElement('li')
+            li.classList.add('list-group-item')
+            li.innerText = power
+
+            powerList.appendChild(li)
+        })
+
+        const enemyList = document.createElement('ul')
+        enemyList.setAttribute('id', 'enemyList')
+        enemyList.classList.add('enemy-list', 'list-group', 'list-group-flush')
+
+        obj.enemies.forEach(enemy => {
+            const li = document.createElement('li')
+            li.classList.add('list-group-item')
+            li.innerText = enemy
+
+            enemyList.appendChild(li)
+        })
+
+
+        //apened elements to card body
+        cardBody.appendChild(h3)
+        cardBody.appendChild(aliasText)
+        cardBody.appendChild(heroText)
+        cardBody.appendChild(universeText)
+        cardBody.appendChild(powerList)
+        cardBody.appendChild(enemyList)
+
+
+        //apened elements to card
+        card.appendChild(img)
+        card.appendChild(cardBody)
+
+        //apened to col
+        col.appendChild(card)
+
+        //apened to cardRow
+        cardRow.appendChild(col)
+
+        //I FIGURED OUT A PROBLEM ON MY OWN!!!! IM BETTER THAN EVERYONE!!!!! but dad...
+
     }
+    
 }
-
 // const superman = new Superhero()
 
 // //console.log(superman);
