@@ -1,0 +1,47 @@
+body {
+    background-color: ivory;
+    color: 	#7B3F00;
+}
+
+header {
+    background-color: #ED732E;
+    padding: 5px;
+}
+
+.form{
+    border: 5px solid #FFBF00;
+    padding: 10px;
+    background-color: whitesmoke;
+}
+
+.receipt {
+    padding: 10px;
+    border: 3px solid #FFBF00;
+    background-color: whitesmoke;
+}
+
+.main {
+    padding: 5px;
+}
+
+.heading {
+    color: ivory;
+    padding: 5px;
+}
+
+.btn {
+    background-color: #ED732E;
+    color: white;
+}
+
+.btn:hover {
+    color: black;
+    background-color: #FFBF00;
+}
+
+.form-control {
+    border: 3px solid #ED732E;
+}
+
+
+
