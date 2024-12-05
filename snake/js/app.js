@@ -35,6 +35,8 @@ class Game {
             hiScore: 0
         }
 
+        this.displayScore = document.getElementById('score')
+
     }
 
     startGame() {
@@ -72,6 +74,7 @@ class Game {
             return
         }
 
+        this.displayScore.innerText = this.score.currScore
         this.changingDirection = false
         // make a timer
         setTimeout(()=> {
@@ -172,8 +175,8 @@ class Game {
             this.score.currScore+= 10
             this.setScores()
             this.speed-= 5
-            const displayScore = document.getElementById('score')
-            displayScore.innerText = this.score.currScore
+            // const displayScore = document.getElementById('score')
+            // displayScore.innerText = this.score.currScore
             this.generateFood()
         } else {
             snake.pop()
