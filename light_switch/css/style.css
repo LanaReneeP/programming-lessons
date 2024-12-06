@@ -1,0 +1,40 @@
+*{box-sizing: border-box;}
+
+h1 {
+    color: pink;
+}
+
+.colophon {
+    color: plum;
+}
+
+.colophon2 {
+    color: purple;
+}
+
+.lightSwitch {
+    width: 700px;
+    height: 700px;
+    background-color: black;
+    margin: 20px auto;
+    transition: background-color 0.3s ease;
+}
+
+.on {
+    background-color: white;
+}
+
+#switch {
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    border: 5px solid plum;
+    background-color: purple;
+    color: white;
+    padding: 5px;
+    text-decoration: none;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    margin: -15px 0 0 -152.5px;
+}
