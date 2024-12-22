@@ -79,8 +79,10 @@ class Game {
         this.countDisplay = document.getElementById('countDisplay')
         this.bestScore = document.getElementById('bestScore')
         this.freezeColorDisplay = document.getElementById('freezeColorDisplay')
+        this.message = document.getElementById('message')
         this.freezeColor = ''
         this.hasWon = false 
+        this.gamePlay = false
         this.colors = [
             'red', 'dodgerblue', 'pink',
             'rebeccapurple', 'orange', 'cyan',
@@ -127,9 +129,17 @@ class Game {
                 color: this.colors[Math.floor(Math.random() * this.colors.length)]
             }
         ]
+
+        this.scores = {
+            prevScore: 0,
+            currScore: 0,
+            bestScore: 0
+        }
     }
 
     init() {
+
+        if (!this.gamePlay) return
         this.getFreezeColor()
         this.makeBoxes()
         this.getMatches()
@@ -187,6 +197,9 @@ class Game {
                     // test freezeColor here
                     if (this.freezeColor != arr[i].color) {
                         this.count++
+                        // testing
+                        this.scores.currScore = this.count
+                        // end testing
                         this.countDisplay.innerText = this.count
 
                         arr[i].color = this.colors[Math.floor(Math.random() * this.colors.length)]
@@ -204,17 +217,102 @@ class Game {
     }
 
     checkWin() {
-        if (this.matches == 9) {
-            this.hasWon = !this.hasWon
+        if (this.matches == 9 && this.gamePlay == true) {
+            this.hasWon = true 
+            this.message.innerText = `You win and it took ${this.count} clicks!!!`
+            this.gameBoard.innerHTML = ''
+            this.gamePlay = false
+            // console.log(this.gamePlay);
+            this.setScores()
         }
-        console.log(this.hasWon)
+    }
+
+    resetGame() {
+        this.resetBoxes()
+        this.message.innerText = ''
+        this.matches = 0
+        this.count = 0
+        this.countDisplay.innerText = this.count
+        this.gamePlay = !this.gamePlay
+        this.hasWon = false
+        this.init()
+    }
+
+    setScores() {
+
+        this.scores = {
+            ...this.scores,
+            prevScore: this.scores.currScore,
+            currScore: this.count,
+            bestScore: this.prevScore < this.scores.currScore ? this.count : this.prevScore
+        }
+
+        // this.scores.prevScore = this.scores.currScore
+        // this.scores.currScore = this.count
+        
+        // if (this.scores.currScore < this.scores.prevScore && this.scores.currScore != 0) {
+        //     this.scores.bestScore = this.scores.currScore
+        // } else {
+        //     this.scores.bestScore = this.scores.currScore
+        // }
+        
+        // this.scores = {
+        //     prevScore: this.scores.currScore,
+
+        // }
+        
+        this.bestScore.innerText = this.scores.bestScore
+    }
+
+    resetBoxes() {
+        this.boxes = [
+            {
+                id: 1,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 2,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 3,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 4,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 5,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 6,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 7,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 8,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            },
+            {
+                id: 9,
+                color: this.colors[Math.floor(Math.random() * this.colors.length)]
+            }
+        ]
     }
 
 }
 
 const action = new Game() 
 
-action.init()
+const startBtn = document.getElementById('startBtn')
+
+startBtn.addEventListener('click', ()=> action.resetGame())
+
 
 
 
